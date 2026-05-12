@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
-import { UserPlus, Mail, Phone , RefreshCw, Lock, Check,  Shield, Info as InfoIcon, SquarePlus, GraduationCap, Building2 , IdCard, Info, ShieldCheck ,ArrowRight,ArrowLeft, Landmark ,UploadCloud, Monitor, Calendar, Eye, EyeOff } from 'lucide-react';
+import { UserPlus, Mail, Phone , RefreshCw,Crown, Lock, Check,  Shield, Info as InfoIcon, SquarePlus, GraduationCap, Building2 , IdCard, Info, ShieldCheck ,ArrowRight,ArrowLeft, Landmark ,UploadCloud, Monitor, Calendar, Eye, EyeOff, Smartphone } from 'lucide-react';
 import api from '../../utils/api';
 import toast from 'react-hot-toast';
 import './Register.css';
@@ -125,51 +125,118 @@ const Register = () => {
     );
 
     const renderAdminForm = () => (
-        <div className="v3-card v3-card-compact text-center">
+        <div className="v3-card v3-card-compact admin-theme-card">
             <div className="v3-form-header text-center mb-8">
-                <h2 className="v3-form-title" style={{ fontSize: '2.4rem' }}>Create Admin Account</h2>
+                <div className="admin-logo-header">
+                    <div className="admin-logo-icon">
+                        <Crown size={32} color="var(--primary-purple)" />
+                    </div>
+                </div>
+                <h2 className="v3-form-title" style={{ fontSize: '2.4rem', background: 'var(--gradient-purple)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Create Admin Account</h2>
                 <p className="v3-form-subtitle">Enter your details to register as a platform administrator</p>
             </div>
             <form className="v3-grid text-left" onSubmit={handleRegister}>
-                {error && <div className="text-red-600 bg-red-50 p-3 rounded mb-4 text-sm">{error}</div>}
+                {error && <div className="error-alert">{error}</div>}
+                
                 <div className="v3-input-group">
                     <label>Full Name</label>
                     <div className="v3-field-no-icon">
-                        <input type="text" placeholder="Enter your full name" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} />
+                        <input 
+                            type="text" 
+                            placeholder="Enter your full name" 
+                            required 
+                            value={formData.name} 
+                            onChange={e => setFormData({ ...formData, name: e.target.value })} 
+                            style={{ borderColor: 'var(--primary-purple)' }}
+                        />
                     </div>
                 </div>
+                
                 <div className="v3-input-group">
-                    <label>Email Address</label>
+                    <label>Admin Email</label>
                     <div className="v3-field-no-icon">
-                        <input type="email" placeholder="admin@platform.com" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} />
+                        <input 
+                            type="email" 
+                            placeholder="admin@internhub.com" 
+                            required 
+                            value={formData.email} 
+                            onChange={e => setFormData({ ...formData, email: e.target.value })} 
+                            style={{ borderColor: 'var(--primary-purple)' }}
+                        />
                     </div>
                 </div>
+                
                 <div className="v3-input-group">
                     <label>Password</label>
                     <div className="v3-field-no-icon" style={{ position: 'relative' }}>
-                        <input type={showPassword ? "text" : "password"} placeholder="Min. 8 characters" required value={formData.password} onChange={e => setFormData({ ...formData, password: e.target.value })} style={{ paddingRight: '3rem' }} />
-                        <button type="button" className="password-eye-btn" onClick={() => setShowPassword(!showPassword)}>
+                        <input 
+                            type={showPassword ? "text" : "password"} 
+                            placeholder="Create a secure admin password" 
+                            required 
+                            value={formData.password} 
+                            onChange={e => setFormData({ ...formData, password: e.target.value })} 
+                            style={{ paddingRight: '3rem', borderColor: 'var(--primary-purple)' }} 
+                        />
+                        <button 
+                            type="button" 
+                            className="password-eye-btn"
+                            onClick={() => setShowPassword(!showPassword)}
+                            style={{ borderColor: 'var(--primary-purple)' }}
+                        >
                             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                     </div>
                 </div>
+                
                 <div className="v3-input-group">
                     <label>Confirm Password</label>
                     <div className="v3-field-no-icon" style={{ position: 'relative' }}>
-                        <input type={showConfirmPassword ? "text" : "password"} placeholder="Repeat your password" required value={formData.confirmPassword} onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })} style={{ paddingRight: '3rem' }} />
-                        <button type="button" className="password-eye-btn" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                        <input 
+                            type={showConfirmPassword ? "text" : "password"} 
+                            placeholder="Confirm your admin password" 
+                            required 
+                            value={formData.confirmPassword} 
+                            onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })} 
+                            style={{ paddingRight: '3rem', borderColor: 'var(--primary-purple)' }} 
+                        />
+                        <button 
+                            type="button" 
+                            className="password-eye-btn" 
+                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                            style={{ borderColor: 'var(--primary-purple)' }}
+                        >
                             {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                     </div>
                 </div>
 
                 <div className="mt-8">
-                    <button type="submit" className="v3-btn-comp" disabled={loading} style={{ padding: '1.2rem', fontSize: '1.1rem', backgroundColor: '#8b5cf6' }}>
+                    <button 
+                        type="submit" 
+                        className="v3-btn-comp admin-btn" 
+                        disabled={loading} 
+                        style={{ 
+                            padding: '1.2rem', 
+                            fontSize: '1.1rem', 
+                            background: 'var(--gradient-purple)',
+                            boxShadow: 'var(--shadow-md), var(--shadow-glow-purple)'
+                        }}
+                    >
                         {loading ? 'Processing...' : 'Register as Admin'}
                     </button>
                 </div>
-                <p style={{ fontSize: '0.95rem', color: '#64748b', textAlign: 'center', marginTop: '2rem' }}>
-                    Already have an admin account? <Link to="/admin-login" style={{ color: '#8b5cf6', fontWeight: 700 }}>Sign In</Link>
+                
+                <div className="admin-security-info">
+                    <div className="security-icon">
+                        <ShieldCheck size={20} color="var(--primary-purple)" />
+                    </div>
+                    <div className="security-text">
+                        <strong>Enhanced Security:</strong> Admin accounts require additional verification and have elevated privileges for platform management.
+                    </div>
+                </div>
+                
+                <p style={{ fontSize: '0.95rem', color: 'var(--gray-500)', textAlign: 'center', marginTop: '2rem' }}>
+                    Already have an admin account? <Link to="/admin-login" style={{ color: 'var(--primary-purple)', fontWeight: 700 }}>Sign In</Link>
                 </p>
             </form>
         </div>
@@ -191,26 +258,76 @@ const Register = () => {
                     </div>
                 </div>
                 <div className="v3-tabs-nav">
-                    <div className={`v3-tab-item ${step === 1 ? 'active' : ''}`} onClick={() => setStep(1)}>Personal</div>
-                    <div className={`v3-tab-item ${step === 2 ? 'active' : ''}`}>OTP Verify</div>
-                    <div className={`v3-tab-item ${step === 3 ? 'active' : ''}`}>Academic</div>
+                    <div className={`v3-tab-item ${step === 1 ? 'active' : ''}`} onClick={() => setStep(1)}>Personal Info</div>
+                    <div className={`v3-tab-item ${step === 2 ? 'active' : ''}`}>Verify Phone</div>
+                    <div className={`v3-tab-item ${step === 3 ? 'active' : ''}`}>Academic Details</div>
                 </div>
                 {step === 1 && (
                     <form className="v3-grid text-left" onSubmit={(e) => { e.preventDefault(); setStep(2); }}>
-                        {error && <div className="text-red-600 bg-red-50 p-3 rounded mb-4 text-sm">{error}</div>}
-                        <div className="mb-6"><h2 className="v3-form-title">Create Account</h2><p className="v3-form-subtitle">Join our community to start your journey.</p></div>
-                        <div className="v3-grid-2 v3-grid">
-                            <div className="v3-input-group"><label>Full Name</label><div className="v3-field-with-icon"><UserPlus size={18} className="v3-field-icon" /><input type="text" placeholder="Muhammad" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} /></div></div>
-                            <div className="v3-input-group"><label>Email Address</label><div className="v3-field-with-icon"><Mail size={18} className="v3-field-icon" /><input type="email" placeholder="abc@example.com" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} /></div></div>
+                        {error && <div className="error-alert">{error}</div>}
+                        <div className="mb-6">
+                            <h2 className="v3-form-title">Create Student Account</h2>
+                            <p className="v3-form-subtitle">Join our community to start your internship journey</p>
                         </div>
-                        <div className="v3-input-group"><label>Phone Number</label><div className="v3-field-with-icon"><Phone size={18} className="v3-field-icon" /><input type="text" placeholder="+92 0000000" required value={formData.phone} onChange={e => setFormData({ ...formData, phone: e.target.value })} /></div></div>
+                        <div className="v3-grid-2 v3-grid">
+                            <div className="v3-input-group">
+                                <label>Full Name</label>
+                                <div className="v3-field-with-icon">
+                                    <UserPlus size={18} className="v3-field-icon" />
+                                    <input 
+                                        type="text" 
+                                        placeholder="Enter your full name" 
+                                        required 
+                                        value={formData.name} 
+                                        onChange={e => setFormData({ ...formData, name: e.target.value })} 
+                                    />
+                                </div>
+                            </div>
+                            <div className="v3-input-group">
+                                <label>Email Address</label>
+                                <div className="v3-field-with-icon">
+                                    <Mail size={18} className="v3-field-icon" />
+                                    <input 
+                                        type="email" 
+                                        placeholder="your.email@example.com" 
+                                        required 
+                                        value={formData.email} 
+                                        onChange={e => setFormData({ ...formData, email: e.target.value })} 
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="v3-input-group">
+                            <label>Phone Number</label>
+                            <div className="v3-field-with-icon">
+                                <Phone size={18} className="v3-field-icon" />
+                                <input 
+                                    type="tel" 
+                                    placeholder="+92 300 1234567" 
+                                    required 
+                                    value={formData.phone} 
+                                    onChange={e => setFormData({ ...formData, phone: e.target.value })} 
+                                />
+                            </div>
+                        </div>
                         <div className="v3-grid-2 v3-grid">
                             <div className="v3-input-group">
                                 <label>Password</label>
                                 <div className="v3-field-with-icon">
                                     <Lock size={18} className="v3-field-icon" />
-                                    <input type={showPassword ? "text" : "password"} placeholder="••••••••" required value={formData.password} onChange={e => setFormData({ ...formData, password: e.target.value })} style={{ paddingRight: '3rem' }} />
-                                    <button type="button" className="password-eye-btn" onClick={() => setShowPassword(!showPassword)}>
+                                    <input 
+                                        type={showPassword ? "text" : "password"} 
+                                        placeholder="Create a strong password" 
+                                        required 
+                                        value={formData.password} 
+                                        onChange={e => setFormData({ ...formData, password: e.target.value })} 
+                                        style={{ paddingRight: '3rem' }} 
+                                    />
+                                    <button 
+                                        type="button" 
+                                        className="password-eye-btn" 
+                                        onClick={() => setShowPassword(!showPassword)}
+                                    >
                                         {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                     </button>
                                 </div>
@@ -219,39 +336,167 @@ const Register = () => {
                                 <label>Confirm Password</label>
                                 <div className="v3-field-with-icon">
                                     <RefreshCw size={18} className="v3-field-icon" />
-                                    <input type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" required value={formData.confirmPassword} onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })} style={{ paddingRight: '3rem' }} />
-                                    <button type="button" className="password-eye-btn" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                                    <input 
+                                        type={showConfirmPassword ? "text" : "password"} 
+                                        placeholder="Confirm your password" 
+                                        required 
+                                        value={formData.confirmPassword} 
+                                        onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })} 
+                                        style={{ paddingRight: '3rem' }} 
+                                    />
+                                    <button 
+                                        type="button" 
+                                        className="password-eye-btn" 
+                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                    >
                                         {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                                     </button>
                                 </div>
                             </div>
                         </div>
-                        <div className="v3-footer-actions mt-8"><p style={{ fontSize: '0.9rem', color: '#64748b' }}>Already have an account? <Link to="/login" style={{ color: '#f26522', fontWeight: 700 }}>Log in</Link></p><button type="submit" className="v3-btn-std">Continue <ArrowRight size={18} /></button></div>
+                        <div className="v3-footer-actions mt-8">
+                            <p style={{ fontSize: '0.9rem', color: 'var(--gray-500)' }}>Already have an account? <Link to="/login" style={{ color: 'var(--primary-orange)', fontWeight: 700 }}>Log in</Link></p>
+                            <button type="submit" className="v3-btn-std">
+                                Continue <ArrowRight size={18} />
+                            </button>
+                        </div>
                     </form>
                 )}
                 {step === 2 && (
                     <div className="v3-otp-container">
-                        <div className="v3-shield-header"><div className="v3-shield-icon-bg"><ShieldCheck size={40} color="white" /></div><div className="v3-shield-check"><Check size={20} color="white" /></div></div>
-                        <h2 className="v3-form-title">Verify your Phone</h2>
-                        <p className="v3-form-subtitle">We have sent a 6 digit code to your registered mobile number <strong style={{ color: '#1e293b' }}>+1 ••• ••• 4290</strong></p>
-                        <div className="v3-otp-inputs">{[1, 2, 3, 4, 5, 6].map(i => (<div key={i} className="v3-otp-box" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>•</div>))}</div>
-                        <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '2.5rem' }}>Didn't receive the code? <Link to="#" style={{ color: '#f26522', fontWeight: 700 }}>Resend OTP</Link></p>
-                        <div className="v3-footer-actions" style={{ width: '100%' }}><button className="v3-btn-back" onClick={() => setStep(1)}><ArrowLeft size={18} /> Back</button><button className="v3-btn-std" onClick={() => setStep(3)}>Continue <ArrowRight size={18} /></button></div>
+                        <div className="v3-shield-header">
+                            <div className="v3-shield-icon-bg">
+                                <Smartphone size={40} color="var(--primary-orange)" />
+                            </div>
+                            <div className="v3-shield-check">
+                                <Check size={20} color="white" />
+                            </div>
+                        </div>
+                        <h2 className="v3-form-title">Verify Your Phone</h2>
+                        <p className="v3-form-subtitle">
+                            We've sent a 6-digit verification code to <strong style={{ color: 'var(--gray-800)' }}>{formData.phone || '+92 ••• ••• 4290'}</strong>
+                        </p>
+                        <div className="v3-otp-inputs">
+                            {[1, 2, 3, 4, 5, 6].map(i => (
+                                <input 
+                                    key={i} 
+                                    type="text" 
+                                    maxLength={1}
+                                    className="v3-otp-box"
+                                    placeholder="•"
+                                    style={{ 
+                                        display: 'flex', 
+                                        alignItems: 'center', 
+                                        justifyContent: 'center',
+                                        textAlign: 'center'
+                                    }}
+                                />
+                            ))}
+                        </div>
+                        <p style={{ fontSize: '0.9rem', color: 'var(--gray-500)', marginBottom: '2.5rem' }}>
+                            Didn't receive the code? 
+                            <Link to="#" style={{ color: 'var(--primary-orange)', fontWeight: 700, marginLeft: '0.5rem' }}>Resend OTP</Link>
+                        </p>
+                        <div className="v3-footer-actions" style={{ width: '100%' }}>
+                            <button className="v3-btn-back" onClick={() => setStep(1)}>
+                                <ArrowLeft size={18} /> Back
+                            </button>
+                            <button className="v3-btn-std" onClick={() => setStep(3)}>
+                                Verify & Continue <ArrowRight size={18} />
+                            </button>
+                        </div>
                     </div>
                 )}
                 {step === 3 && (
                     <form className="v3-grid text-left" onSubmit={handleRegister}>
-                        {error && <div className="text-red-600 bg-red-50 p-3 rounded mb-4 text-sm">{error}</div>}
-                        <div className="v3-grid-2 v3-grid">
-                            <div className="v3-input-group"><label>University Name</label><div className="v3-field-with-icon"><Landmark size={18} className="v3-field-icon" /><input type="text" placeholder="e.g. Stanford University" required value={formData.university} onChange={e => setFormData({ ...formData, university: e.target.value })} /></div></div>
-                            <div className="v3-input-group"><label>Program</label><div className="v3-field-with-icon"><IdCard size={18} className="v3-field-icon" /><select value={formData.program} onChange={e => setFormData({ ...formData, program: e.target.value })} required><option value="">Select Program</option><option>Software Engineering</option><option>Artificial Intelligence</option><option>Data Science</option><option>Cyber Security</option><option>Information Technology</option></select></div></div>
+                        {error && <div className="error-alert">{error}</div>}
+                        <div className="mb-6">
+                            <h2 className="v3-form-title">Academic Information</h2>
+                            <p className="v3-form-subtitle">Help us tailor your experience with your academic details</p>
                         </div>
                         <div className="v3-grid-2 v3-grid">
-                            <div className="v3-input-group"><label>Current Semester</label><div className="v3-field-with-icon"><Calendar size={18} className="v3-field-icon" /><select value={formData.semester} onChange={e => setFormData({ ...formData, semester: e.target.value })} required><option value="">Select Semester</option>{[1, 2, 3, 4, 5, 6, 7, 8].map(s => <option key={s} value={s}>{s}</option>)}</select></div></div>
-                            <div className="v3-input-group"><label>Enrollment Number</label><div className="v3-field-with-icon"><Info size={18} className="v3-field-icon" /><input type="text" placeholder="STU-2024-001" required value={formData.enrollmentNumber} onChange={e => setFormData({ ...formData, enrollmentNumber: e.target.value })} /></div></div>
+                            <div className="v3-input-group">
+                                <label>University Name</label>
+                                <div className="v3-field-with-icon">
+                                    <Landmark size={18} className="v3-field-icon" />
+                                    <input 
+                                        type="text" 
+                                        placeholder="e.g. Stanford University" 
+                                        required 
+                                        value={formData.university} 
+                                        onChange={e => setFormData({ ...formData, university: e.target.value })} 
+                                    />
+                                </div>
+                            </div>
+                            <div className="v3-input-group">
+                                <label>Program/Major</label>
+                                <div className="v3-field-with-icon">
+                                    <IdCard size={18} className="v3-field-icon" />
+                                    <select 
+                                        value={formData.program} 
+                                        onChange={e => setFormData({ ...formData, program: e.target.value })} 
+                                        required
+                                    >
+                                        <option value="">Select Program</option>
+                                        <option>Software Engineering</option>
+                                        <option>Artificial Intelligence</option>
+                                        <option>Data Science</option>
+                                        <option>Cyber Security</option>
+                                        <option>Information Technology</option>
+                                        <option>Computer Science</option>
+                                        <option>Business Administration</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div className="v3-info-box"><div style={{ color: '#f26522' }}><InfoIcon size={20} /></div><p><strong>Why this information?</strong> We use your academic details to verify your student status and tailor your dashboard experience with relevant resources.</p></div>
-                        <div className="v3-footer-actions mt-4"><button type="button" className="v3-btn-back" onClick={() => setStep(2)}><ArrowLeft size={18} /> Back</button><button type="submit" className="v3-btn-std" disabled={loading}>{loading ? 'Processing...' : 'Complete Registration'} <Check size={18} className="ml-1" /></button></div>
+                        <div className="v3-grid-2 v3-grid">
+                            <div className="v3-input-group">
+                                <label>Current Semester</label>
+                                <div className="v3-field-with-icon">
+                                    <Calendar size={18} className="v3-field-icon" />
+                                    <select 
+                                        value={formData.semester} 
+                                        onChange={e => setFormData({ ...formData, semester: e.target.value })} 
+                                        required
+                                    >
+                                        <option value="">Select Semester</option>
+                                        {[1, 2, 3, 4, 5, 6, 7, 8].map(s => (
+                                            <option key={s} value={s}>Semester {s}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                            <div className="v3-input-group">
+                                <label>Enrollment Number</label>
+                                <div className="v3-field-with-icon">
+                                    <Info size={18} className="v3-field-icon" />
+                                    <input 
+                                        type="text" 
+                                        placeholder="e.g. STU-2024-001" 
+                                        required 
+                                        value={formData.enrollmentNumber} 
+                                        onChange={e => setFormData({ ...formData, enrollmentNumber: e.target.value })} 
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="v3-info-box">
+                            <div style={{ color: 'var(--primary-orange)' }}>
+                                <InfoIcon size={20} />
+                            </div>
+                            <p>
+                                <strong>Why this information?</strong> 
+                                We use your academic details to verify your student status and provide personalized internship recommendations that match your field of study and academic level.
+                            </p>
+                        </div>
+                        <div className="v3-footer-actions mt-4">
+                            <button type="button" className="v3-btn-back" onClick={() => setStep(2)}>
+                                <ArrowLeft size={18} /> Back
+                            </button>
+                            <button type="submit" className="v3-btn-std" disabled={loading}>
+                                {loading ? 'Processing...' : 'Complete Registration'} <Check size={18} className="ml-1" />
+                            </button>
+                        </div>
                     </form>
                 )}
             </div>
@@ -260,73 +505,195 @@ const Register = () => {
 
     const renderCompanyForm = () => (
         <div className="v3-card v3-card-wide">
-            <div className="v3-form-header text-left mb-8"><h2 className="v3-form-title">Create Account</h2><p className="v3-form-subtitle">Provide your company details to join our network.</p></div>
+            <div className="v3-form-header text-left mb-8">
+                <h2 className="v3-form-title">Create Company Account</h2>
+                <p className="v3-form-subtitle">Join our network of top employers and find talented interns</p>
+            </div>
             <form className="v3-grid v3-grid-2" onSubmit={handleRegister}>
-                {error && <div className="text-red-100 bg-red-600 p-3 rounded mb-4 text-sm col-span-2">{error}</div>}
-                <div className="v3-input-group"><label>Company Name</label><div className="v3-field-no-icon"><input type="text" placeholder="e.g. Acme Corporation" required value={formData.companyName} onChange={e => setFormData({ ...formData, companyName: e.target.value })} /></div></div>
-                <div className="v3-input-group"><label>Official Email</label><div className="v3-field-no-icon"><input type="email" placeholder="contact@company.com" required value={formData.email} onChange={e => setFormData({ ...formData, email: e.target.value })} /></div></div>
+                {error && <div className="error-alert">{error}</div>}
+                
+                <div className="v3-input-group">
+                    <label>Company Name</label>
+                    <div className="v3-field-no-icon">
+                        <input 
+                            type="text" 
+                            placeholder="e.g. Acme Corporation" 
+                            required 
+                            value={formData.companyName} 
+                            onChange={e => setFormData({ ...formData, companyName: e.target.value })} 
+                        />
+                    </div>
+                </div>
+                
+                <div className="v3-input-group">
+                    <label>Official Email</label>
+                    <div className="v3-field-no-icon">
+                        <input 
+                            type="email" 
+                            placeholder="contact@company.com" 
+                            required 
+                            value={formData.email} 
+                            onChange={e => setFormData({ ...formData, email: e.target.value })} 
+                        />
+                    </div>
+                </div>
+                
                 <div className="v3-input-group">
                     <label>Password</label>
                     <div className="v3-field-no-icon" style={{ position: 'relative' }}>
-                        <input type={showPassword ? "text" : "password"} placeholder="••••••••" required value={formData.password} onChange={e => setFormData({ ...formData, password: e.target.value })} style={{ paddingRight: '3rem' }} />
-                        <button type="button" className="password-eye-btn" onClick={() => setShowPassword(!showPassword)}>
+                        <input 
+                            type={showPassword ? "text" : "password"} 
+                            placeholder="Create a strong password" 
+                            required 
+                            value={formData.password} 
+                            onChange={e => setFormData({ ...formData, password: e.target.value })} 
+                            style={{ paddingRight: '3rem' }} 
+                        />
+                        <button 
+                            type="button" 
+                            className="password-eye-btn" 
+                            onClick={() => setShowPassword(!showPassword)}
+                        >
                             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                     </div>
                 </div>
+                
                 <div className="v3-input-group">
                     <label>Confirm Password</label>
                     <div className="v3-field-no-icon" style={{ position: 'relative' }}>
-                        <input type={showConfirmPassword ? "text" : "password"} placeholder="••••••••" required value={formData.confirmPassword} onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })} style={{ paddingRight: '3rem' }} />
-                        <button type="button" className="password-eye-btn" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                        <input 
+                            type={showConfirmPassword ? "text" : "password"} 
+                            placeholder="Confirm your password" 
+                            required 
+                            value={formData.confirmPassword} 
+                            onChange={e => setFormData({ ...formData, confirmPassword: e.target.value })} 
+                            style={{ paddingRight: '3rem' }} 
+                        />
+                        <button 
+                            type="button" 
+                            className="password-eye-btn" 
+                            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        >
                             {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                         </button>
                     </div>
                 </div>
+                
                 <div className="v3-input-group">
                     <label>Industry</label>
                     <div className="v3-field-no-icon">
-                        <select value={formData.industry} onChange={e => setFormData({ ...formData, industry: e.target.value })}>
+                        <select 
+                            value={formData.industry} 
+                            onChange={e => setFormData({ ...formData, industry: e.target.value })}
+                        >
                             <option>Technology</option>
-                            <option>Education</option>
                             <option>Finance</option>
                             <option>Healthcare</option>
-                            <option>Media</option>
+                            <option>Education</option>
+                            <option>Media & Entertainment</option>
+                            <option>Retail</option>
+                            <option>Manufacturing</option>
+                            <option>Consulting</option>
                             <option>Other</option>
                         </select>
                     </div>
                 </div>
+                
                 <div className="v3-input-group">
                     <label>Company Type</label>
                     <div className="v3-field-no-icon">
-                        <select value={formData.type} onChange={e => setFormData({ ...formData, type: e.target.value })}>
+                        <select 
+                            value={formData.type} 
+                            onChange={e => setFormData({ ...formData, type: e.target.value })}
+                        >
                             <option>Software House</option>
+                            <option>Startup</option>
+                            <option>Enterprise</option>
                             <option>University</option>
-                            <option>Corporate</option>
+                            <option>Government</option>
+                            <option>Non-Profit</option>
                         </select>
                     </div>
                 </div>
-                <div className="v3-input-group"><label>Location</label><div className="v3-field-no-icon"><input type="text" placeholder="City, Country" required value={formData.location} onChange={e => setFormData({ ...formData, location: e.target.value })} /></div></div>
-                <div className="v3-input-group full-width"><div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.25rem' }}><label className="m-0">Website</label><span style={{ fontSize: '0.75rem', color: '#94a3b8', fontStyle: 'italic' }}>(Optional)</span></div><div className="v3-field-no-icon"><input type="text" placeholder="https://www.company.com" value={formData.website} onChange={e => setFormData({ ...formData, website: e.target.value })} /></div></div>
-                <div className="v3-input-group full-width"><label>Company Description</label><div className="v3-field-no-icon"><textarea placeholder="Briefly describe what your company does..." value={formData.description} onChange={e => setFormData({ ...formData, description: e.target.value })} style={{ minHeight: '120px' }}></textarea></div></div>
+                
+                <div className="v3-input-group">
+                    <label>Location</label>
+                    <div className="v3-field-no-icon">
+                        <input 
+                            type="text" 
+                            placeholder="City, Country" 
+                            required 
+                            value={formData.location} 
+                            onChange={e => setFormData({ ...formData, location: e.target.value })} 
+                        />
+                    </div>
+                </div>
+                
+                <div className="v3-input-group full-width">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                        <label className="m-0">Company Website</label>
+                        <span style={{ fontSize: '0.75rem', color: 'var(--gray-400)', fontStyle: 'italic' }}>(Optional)</span>
+                    </div>
+                    <div className="v3-field-no-icon">
+                        <input 
+                            type="url" 
+                            placeholder="https://www.company.com" 
+                            value={formData.website} 
+                            onChange={e => setFormData({ ...formData, website: e.target.value })} 
+                        />
+                    </div>
+                </div>
+                
+                <div className="v3-input-group full-width">
+                    <label>Company Description</label>
+                    <div className="v3-field-no-icon">
+                        <textarea 
+                            placeholder="Tell us about your company culture, mission, and what kind of interns you're looking for..." 
+                            value={formData.description} 
+                            onChange={e => setFormData({ ...formData, description: e.target.value })} 
+                            style={{ minHeight: '120px' }}
+                        ></textarea>
+                    </div>
+                </div>
+                
                 <div className="full-width mt-4">
-                    <label style={{ display: 'block', marginBottom: '0.75rem' }}>Registration Document</label>
+                    <label style={{ display: 'block', marginBottom: '0.75rem', fontWeight: 700, color: 'var(--gray-700)' }}>Registration Document</label>
                     <label className="upload-box-v3" style={{ cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-                        <input type="file" style={{ display: 'none' }} accept=".pdf,.png,.jpg,.jpeg" onChange={(e) => setFormData({ ...formData, document: e.target.files[0] })} />
-                        <UploadCloud size={32} color={formData.document ? "#10b981" : "#6366f1"} />
-                        <p style={{ fontSize: '0.9rem', marginTop: '0.5rem' }}>
+                        <input 
+                            type="file" 
+                            style={{ display: 'none' }} 
+                            accept=".pdf,.png,.jpg,.jpeg" 
+                            onChange={(e) => setFormData({ ...formData, document: e.target.files[0] })} 
+                        />
+                        <UploadCloud 
+                            size={40} 
+                            color={formData.document ? "var(--success)" : "var(--primary-blue)"} 
+                        />
+                        <p style={{ fontSize: '0.9rem', marginTop: '0.5rem', fontWeight: 500 }}>
                             {formData.document ? (
-                                <span style={{ color: '#10b981', fontWeight: 700 }}>{formData.document.name}</span>
+                                <span style={{ color: 'var(--success)', fontWeight: 700 }}>{formData.document.name}</span>
                             ) : (
-                                <><span style={{ color: '#6366f1', fontWeight: 700 }}>Upload a file</span> or drag and drop</>
+                                <>
+                                    <span style={{ color: 'var(--primary-blue)', fontWeight: 700 }}>Click to upload</span> or drag and drop
+                                </>
                             )}
                         </p>
-                        {!formData.document && <span style={{ fontSize: '0.75rem', color: '#94a3b8', marginTop: '0.25rem' }}>PDF, PNG, JPG up to 10MB</span>}
+                        {!formData.document && (
+                            <span style={{ fontSize: '0.75rem', color: 'var(--gray-400)', marginTop: '0.25rem' }}>
+                                PDF, PNG, JPG up to 10MB
+                            </span>
+                        )}
                     </label>
                 </div>
+                
                 <div className="full-width mt-8">
-                    <button type="submit" className="v3-btn-comp" disabled={loading}>{loading ? 'Processing...' : 'Register Company'}</button>
-                    <p style={{ fontSize: '0.85rem', color: '#64748b', textAlign: 'center', marginTop: '1.5rem' }}>By registering, you agree to our <Link to="#" style={{ color: '#6366f1', fontWeight: 700 }}>Terms of Service</Link> and <Link to="#" style={{ color: '#6366f1', fontWeight: 700 }}>Privacy Policy</Link>.</p>
+                    <button type="submit" className="v3-btn-comp" disabled={loading}>
+                        {loading ? 'Processing...' : 'Create Company Account'}
+                    </button>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--gray-500)', textAlign: 'center', marginTop: '1.5rem' }}>
+                        By registering, you agree to our <Link to="#" style={{ color: 'var(--primary-blue)', fontWeight: 700 }}>Terms of Service</Link> and <Link to="#" style={{ color: 'var(--primary-blue)', fontWeight: 700 }}>Privacy Policy</Link>.
+                    </p>
                 </div>
             </form>
         </div>

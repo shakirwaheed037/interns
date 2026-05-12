@@ -28,8 +28,12 @@ const Navbar = () => {
 
                 <div className="navbar-right-flex">
                     {userInfo && <NotificationBell userRole={userInfo.role} />}
-                    <button className="navbar-hamburger" onClick={() => setIsOpen(!isOpen)}>
-                        {isOpen ? <X size={24} /> : <Menu size={24} />}
+                    <button className={`navbar-hamburger ${isOpen ? 'is-open' : ''}`} onClick={() => setIsOpen(!isOpen)}>
+                        <div className="hamburger-icon">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </button>
                 </div>
 

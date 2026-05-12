@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
@@ -14,3 +15,7 @@ The React Compiler is not enabled on this template because of its impact on dev 
 ## Expanding the ESLint configuration
 
 If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+=======
+# interns
+Interns Portal is a full-stack internship management web application designed to connect students, companies, and administrators on a single platform. It allows students to apply for internships, companies to post opportunities, and admins to manage the entire system efficiently.
+>>>>>>> 7d5e6a215ff24c31d3ed4540b7ec3534353721cc
